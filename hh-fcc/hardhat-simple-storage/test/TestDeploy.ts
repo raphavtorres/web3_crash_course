@@ -27,4 +27,25 @@ describe('SimpleStorage', function () {
 
     assert.equal(updatedValue.toString(), expectedValue);
   });
+
+  it('Should add person', async function () {
+    const expectedName = 'Raphael';
+    const expectedNumber = 42;
+
+    const transactionResponse = await contract.addPerson(
+      expectedName,
+      expectedNumber,
+    );
+    await transactionResponse.wait(1);
+
+    const person = await contract.people(0);
+    const personFavoriteNumber = person.favoriteNumber;
+    const personName = person.name;
+    const mappingFavoriteNumber =
+      await contract.nameToFavoriteNumber(expectedName);
+
+    expect(personName).to.equal(expectedName);
+    expect(personFavoriteNumber).to.equal(expectedNumber);
+    expect(mappingFavoriteNumber).to.equal(expectedNumber);
+  });
 });
