@@ -4,7 +4,6 @@ import '@nomicfoundation/hardhat-toolbox';
 import '@nomicfoundation/hardhat-verify';
 import './tasks/block-number';
 import 'hardhat-gas-reporter';
-import { boolean } from 'hardhat/internal/core/params/argumentTypes';
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || 'https://eth-sepolia';
 const PRIVATE_KEY = process.env.PRIVATE_KEY! || '0xkey';
