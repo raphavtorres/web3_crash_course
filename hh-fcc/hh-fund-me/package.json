@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.5",
+    "hardhat-deploy": "^0.12.4"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.3.1"
+  }
+}
