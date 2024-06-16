@@ -4,7 +4,7 @@ async function verify(contractAddress: string, args: any[]) {
   try {
     await run('verify:verify', {
       address: contractAddress,
-      contructorArguments: args,
+      constructorArguments: args,
     })
   } catch (e: any) {
     if (e.message.toLowerCase().includes('already verified')) {
