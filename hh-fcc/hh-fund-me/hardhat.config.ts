@@ -1,12 +1,18 @@
-import { HardhatUserConfig } from 'hardhat/config'
+import '@typechain/hardhat'
+import '@nomicfoundation/hardhat-verify'
+import '@nomiclabs/hardhat-ethers'
+import 'solidity-coverage'
 import '@nomicfoundation/hardhat-toolbox'
 import 'hardhat-deploy'
 import 'dotenv/config'
+import 'hardhat-gas-reporter'
+
+import { HardhatUserConfig } from 'hardhat/config'
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || 'https://eth-sepolia'
 console.log(SEPOLIA_RPC_URL)
-const PRIVATE_KEY = process.env.PRIVATE_KEY || '0xkey'
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'key'
+const PRIVATE_KEY = process.env.PRIVATE_KEY
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || 'key'
 const REPORT_GAS = process.env.REPORT_GAS
 
@@ -28,7 +34,7 @@ const config: HardhatUserConfig = {
   networks: {
     sepolia: {
       url: SEPOLIA_RPC_URL,
-      accounts: [PRIVATE_KEY],
+      accounts: [PRIVATE_KEY!],
       chainId: 11155111,
     },
     localhost: {
@@ -47,6 +53,7 @@ const config: HardhatUserConfig = {
     enabled: REPORT_GAS ? true : false,
     currency: 'USD',
     coinmarketcap: COINMARKETCAP_API_KEY,
+    // @ts-ignore
     L1: 'polygon',
   },
 }
