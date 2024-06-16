@@ -23,11 +23,15 @@ const deployFundMe: DeployFunction = async function (
 
   // when going to localhost or hardhat network --> use a mock
   // so, deploying a mock
-  const args = [ethUsdPriceFeedAddress]
+
+  log('----------------------------------------------------')
+  log('Deploying FundMe and waiting for confirmations...')
+  log([ethUsdPriceFeedAddress])
+
   const fundMe = await deploy('FundMe', {
     // who is deploying
     from: deployer,
-    args: args,
+    args: [ethUsdPriceFeedAddress],
     log: true,
     // we need to wait if on a live network so we can verify properly
     waitConfirmations: networkConfig[network.name].blockConfirmations || 1,
@@ -40,7 +44,7 @@ const deployFundMe: DeployFunction = async function (
     process.env.ETHERSCAN_API_KEY
   ) {
     // verify
-    await verify(fundMe.address, args)
+    await verify(fundMe.address, [ethUsdPriceFeedAddress])
   }
 
   log('---------------')
