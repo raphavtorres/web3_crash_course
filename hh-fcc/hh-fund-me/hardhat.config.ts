@@ -1,11 +1,12 @@
-import '@typechain/hardhat'
-import '@nomicfoundation/hardhat-verify'
-import '@nomiclabs/hardhat-ethers'
 import 'solidity-coverage'
-import '@nomicfoundation/hardhat-toolbox'
 import 'hardhat-deploy'
 import 'dotenv/config'
 import 'hardhat-gas-reporter'
+import '@typechain/hardhat'
+import '@nomiclabs/hardhat-ethers'
+import '@nomicfoundation/hardhat-ethers'
+import '@nomicfoundation/hardhat-verify'
+import '@nomicfoundation/hardhat-toolbox'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
