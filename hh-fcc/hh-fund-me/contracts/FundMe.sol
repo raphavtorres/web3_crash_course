@@ -4,6 +4,12 @@ pragma solidity ^0.8.0;
 import '@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol';
 import './PriceConverter.sol';
 
+/**
+ * @title A contract for crowd funding
+ * @author Raphael Torres
+ * @notice This contract is to demo a sample funding contract
+ * @dev This implements price feeds as our library
+ */
 contract FundMe {
   using PriceConverter for uint256;
 
@@ -12,11 +18,20 @@ contract FundMe {
   address public s_owner;
   AggregatorV3Interface public s_priceFeed;
 
+  modifier onlyOwner() {
+    require(msg.sender == s_owner);
+    _;
+  }
+
   constructor(address priceFeed) {
     s_priceFeed = AggregatorV3Interface(priceFeed);
     s_owner = msg.sender;
   }
 
+  /**
+   * @notice This function funds this contract
+   * @dev This implements price feeds as our library
+   */
   function fund() public payable {
     uint256 minimumUSD = 50 * 10 ** 18;
     require(
@@ -30,11 +45,6 @@ contract FundMe {
 
   function getVersion() public view returns (uint256) {
     return s_priceFeed.version();
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == s_owner);
-    _;
   }
 
   function withdraw() public payable onlyOwner {
