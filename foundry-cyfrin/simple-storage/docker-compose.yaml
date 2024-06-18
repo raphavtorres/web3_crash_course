@@ -1,0 +1,10 @@
+services:
+  foundry:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: foundry
+    ports:
+      - 8888:8888
+    volumes:
+      - ./:/app
