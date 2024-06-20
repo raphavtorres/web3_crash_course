@@ -10,3 +10,5 @@ tests
 broadcast
 cache
 out
+
+.env
